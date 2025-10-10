@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>ESP252 • Leadership / Creativity Portfolio</title>
+<style>
+      :root {
+        --bg: #0f1216;
+        --ink: #e7edf3;
+        --muted: #9fb3c8;
+        --accent-1: #7ec8ff; /* creativity */
+        --accent-2: #a7ffcf; /* leadership */
+        --grid: #1b222b;
+        --card: #12171d;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(1200px 800px at 80% 30%, #111725 0%, #0c0f14 60%), var(--bg);
+        color: var(--ink);
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        min-height: 100vh;
+      }
+
+      /* Layout helpers */
+      .container { max-width: 1100px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 56px); }
+      .fullbleed { /* make section span the full viewport width */
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+      }
+
+      header {
+        border-bottom: 1px solid var(--grid);
+        backdrop-filter: blur(6px);
+      }
+      .brand { display: grid; gap: 2px; }
+      .brand b { font-size: clamp(16px, 2.2vw, 22px); letter-spacing: 0.3px; }
+      .brand small { color: var(--muted); }
+
+      /* Overview block */
+      .overview { display: grid; gap: 18px; }
+      .kicker { color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; font-size: 12px; }
+      h1 { margin: 0; font-size: clamp(28px, 4.4vw, 48px); line-height: 1.1; }
+      .sub { color: var(--muted); max-width: 70ch; }
+      .legend { display: flex; gap: 14px; align-items: center; margin-top: 12px; }
+      .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--card); border: 1px solid var(--grid); border-radius: 999px; font-size: 12px; color: var(--muted); }
+      .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+      .dot.c { background: var(--accent-1); box-shadow: 0 0 20px #7ec8ff33; }
+      .dot.l { background: var(--accent-2); box-shadow: 0 0 20px #a7ffcf33; }
+
+      /* Right-brain canvas */
+      .brain-wrap { position: relative; }
+      .brain-card {
+        position: relative;
+        background: linear-gradient(145deg, #0e1624, #0a1018);
+        border: 1px solid var(--grid);
+        border-radius: 28px;
+        box-shadow: 0 10px 30px #00000055, inset 0 1px 0 #ffffff08;
+        padding: clamp(12px, 2vw, 18px);
+        overflow: hidden;
+        /* taller since this is the hero visual */
+        min-height: 60vh;
+        margin: 24px auto;
+        width: min(1200px, 94vw);
+       display:flex; align-items:center; justify-content:center;}
+      .brain-title { position: absolute; top: 14px; left: 16px; font-size: 12px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
+      .hemisphere { width: 100%; height: auto; max-height: 90vh; display: block; margin: 0 auto; }
+      .half-link { cursor: pointer; transition: opacity .2s ease, transform .2s ease; }
+      .half-link:hover { opacity: 0.92; transform: translateY(-1px); }
+      .half-label { font-weight: 700; letter-spacing: 0.04em; }
+      .half-desc { opacity: 0.8; font-size: 12px; }
+
+      footer { border-top: 1px solid var(--grid); padding: 14px clamp(20px, 5vw, 56px); color: var(--muted); font-size: 12px; }
+
+      @media (max-width: 980px) {
+        .brain-card { min-height: 54vh;  display:flex; align-items:center; justify-content:center;}
+      }
+    </style>
+<style>
+/* --- Anti-blur & visibility guards --- */
+:root { --cb-no: none !important; }
+[class*="creativ"] img,
+[id*="creativ"] img,
+[class*="leader"] img,
+[id*="leader"] img {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  image-rendering: auto !important;
+  transform: translateZ(0); /* promote to its own layer */
+  z-index: 3 !important;
+}
+
+[class*="creativ"],
+[id*="creativ"],
+[class*="leader"],
+[id*="leader"],
+[class*="brain"],
+[id*="brain"],
+[class*="hemisphere"],
+[id*="hemisphere"] {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+[class*="creativ"]::before,
+[id*="creativ"]::before,
+[class*="leader"]::before,
+[id*="leader"]::before,
+[class*="brain"]::before,
+[id*="brain"]::before,
+[class*="hemisphere"]::before,
+[id*="hemisphere"]::before {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+[class*="creativ"] *,
+[id*="creativ"] *,
+[class*="leader"] *,
+[id*="leader"] * {
+  mix-blend-mode: normal !important;
+}
+
+img[data-src] { /* ensure lazy-loaded images still show even if JS isn't running */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+</style></head>
+<body>
+<header>
+<div class="brand">
+<b>ESP252 • Leadership/Creativity Portfolio</b>
+<small>Bennett Geissler · Fall 2025</small>
+</div>
+</header>
+<main>
+<section aria-labelledby="hero-title" class="container overview">
+<div class="kicker">Home</div>
+<h1 id="hero-title">The Right Brain View of My Semester</h1>
+<p class="sub">Explore two complementary tracks contained within the right hemisphere: <strong>Creativity</strong> on the left side of the hemisphere and <strong>Leadership</strong> on the right. Each tile leads to a structured, evidence‑based summary of the semester’s work.</p>
+<div class="legend" role="list">
+<span class="chip" role="listitem"><span class="dot c"></span> Creativity</span>
+<span class="chip" role="listitem"><span class="dot l"></span> Leadership</span>
+</div>
+</section>
+<!-- Full-width brain section below overview -->
+<section aria-label="Right hemisphere with two sections" class="fullbleed brain-wrap">
+<div class="brain-card">
+<div class="brain-title">Right Hemisphere</div>
+<svg aria-labelledby="brainLabel" class="hemisphere" preserveaspectratio="xMidYMid meet" role="img" viewbox="0 0 900 700">
+<title id="brainLabel">Right Hemisphere: Creativity (left interior) and Leadership (right interior)</title>
+<defs>
+<lineargradient id="rim" x1="0" x2="1">
+<stop offset="0%" stop-color="#7ec8ff" stop-opacity="0.6"></stop>
+<stop offset="100%" stop-color="#a7ffcf" stop-opacity="0.6"></stop>
+</lineargradient>
+<clippath id="hemiClip">
+<path d="M420 70 L420 630
+                         C420 660 450 680 500 680
+                         C650 680 780 610 840 490
+                         C870 430 880 380 880 340
+                         C880 270 860 220 820 170
+                         C780 120 720 90 650 80
+                         C610 75 570 70 520 70
+                         C480 70 450 70 420 70 Z"></path>
+</clippath>
+<filter height="200%" id="glow" width="200%" x="-50%" y="-50%">
+<fegaussianblur result="b" stddeviation="6"></fegaussianblur>
+<femerge>
+<femergenode in="b"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<g class="hemi-zoom" transform="translate(-380,0) scale(1.26,1)">
+<path d="M420 70 L420 630
+                     C420 660 450 680 500 680
+                     C650 680 780 610 840 490
+                     C870 430 880 380 880 340
+                     C880 270 860 220 820 170
+                     C780 120 720 90 650 80
+                     C610 75 570 70 520 70
+                     C480 70 450 70 420 70 Z" fill="none" filter="url(#glow)" stroke="url(#rim)" stroke-width="3"></path>
+<g clip-path="url(#hemiClip)">
+<rect fill="#0e1624" height="620" width="500" x="420" y="70"></rect>
+<g opacity="0.08">
+<defs>
+<pattern height="28" id="grid" patternunits="userSpaceOnUse" width="28">
+<path d="M28 0H0V28" fill="none" stroke="#ffffff" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid)" height="620" width="500" x="420" y="70"></rect>
+<!-- BEGIN: Injected collage under Creativity label -->
+<g id="creativity-collage" opacity="0.98">
+<defs>
+<!-- Rounded-rect clip for collage tiles -->
+<clippath id="tileR16">
+<rect height="150" rx="16" ry="16" width="200" x="0" y="0"></rect>
+</clippath>
+</defs>
+<!-- Collage is positioned only on the left interior of the hemisphere (x ~420-650) -->
+<!-- Tile 1 -->
+<g transform="translate(410,220) rotate(-3)">
+<image clip-path="url(#tileR16)" height="150" href="swan.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#7ec8ff88" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile 2 -->
+<g transform="translate(415,320) rotate(4)">
+<image clip-path="url(#tileR16)" height="150" href="puzzle.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#7ec8ff55" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile 3 -->
+<g transform="translate(415,360) rotate(-7)">
+<image clip-path="url(#tileR16)" height="150" href="light.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#7ec8ff55" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile 4 -->
+<g transform="translate(415,480) rotate(6)">
+<image clip-path="url(#tileR16)" height="150" href="light 2.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#7ec8ff55" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile 5 -->
+<g transform="translate(400,300) rotate(1)">
+<image clip-path="url(#tileR16)" height="150" href="person.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#7ec8ff55" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile 6 -->
+<g transform="translate(415,230) rotate(-5)">
+<image clip-path="url(#tileR16)" height="150" href="paint-brushes-color-palette_1308-126704.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#7ec8ff55" stroke-width="1" width="200"></rect>
+</g>
+</g>
+<!-- END: Injected collage under Creativity label -->
+<!-- BEGIN: Injected collage under Leadership label -->
+<clippath id="leadClip">
+<rect height="620" width="268" x="652" y="70"></rect>
+</clippath>
+<g clip-path="url(#leadClip)" id="leadership-collage" opacity="0.98">
+<!-- Reuse the rounded tile clip -->
+<defs>
+<clippath id="tileR16L">
+<rect height="150" rx="16" ry="16" width="200" x="0" y="0"></rect>
+</clippath>
+</defs>
+<!-- Tile A -->
+<g transform="translate(700,220) rotate(3)">
+<image clip-path="url(#tileR16L)" height="150" href="istockphoto-1308370134-612x612.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#a7ffcf88" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile B -->
+<g transform="translate(720,320) rotate(-4)">
+<image clip-path="url(#tileR16L)" height="150" href="istockphoto-1305960821-612x612.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#a7ffcf55" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile C -->
+<g transform="translate(690,430) rotate(5)">
+<image clip-path="url(#tileR16L)" height="150" href="istockphoto-1439713781-612x612.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#a7ffcf55" stroke-width="1" width="200"></rect>
+</g>
+<!-- Tile D -->
+<g transform="translate(710,520) rotate(-6)">
+<image clip-path="url(#tileR16L)" height="150" href="istockphoto-1818501973-612x612.jpg" preserveaspectratio="xMidYMid slice" width="200"/>
+<rect fill="none" height="150" rx="16" ry="16" stroke="#a7ffcf55" stroke-width="1" width="200"></rect>
+</g>
+</g>
+<!-- END: Injected collage under Leadership label -->
+</g>
+<a aria-label="Creativity section" class="half-link" href="#creativity">
+<rect fill="#7ec8ff22" height="620" width="230" x="420" y="70"></rect>
+<g transform="translate(450,160)">
+<circle fill="#7ec8ff" r="10"></circle>
+<text class="half-label" fill="#d6efff" x="20" y="5">Creativity</text>
+</g>
+</a>
+<rect fill="#ffffff22" height="620" width="2" x="650" y="70"></rect>
+<a aria-label="Leadership section" class="half-link" href="#leadership">
+<rect fill="#a7ffcf22" height="620" width="268" x="652" y="70"></rect>
+<g transform="translate(680,160)">
+<circle fill="#a7ffcf" r="10"></circle>
+<text class="half-label" fill="#eafff6" x="20" y="5">Leadership</text>
+</g>
+</a>
+</g>
+</g>
+</svg>
+</div>
+</section>
+</main>
+<footer>
+      Placeholder footer · Routing targets: <a href="#creativity">#creativity</a> and <a href="#leadership">#leadership</a> (to be wired to real pages/sections).
+    </footer>
+</body>
+</html>
