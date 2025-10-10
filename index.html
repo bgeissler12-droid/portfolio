@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ESP252 • Leadership / Creativity Portfolio (Crisp v2)</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>ESP252 • Brain with In‑SVG Backgrounds</title>
 <style>
   :root {
     --bg: #0f1216;
@@ -12,185 +13,221 @@
     --accent-1: #7ec8ff;
     --accent-2: #a7ffcf;
     --grid: #1b222b;
-    --card: #12171d;
+    --card: #0b121c;
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-    background: radial-gradient(1200px 800px at 80% 30%, #111725 0%, #0c0f14 60%), var(--bg);
-    color: var(--ink);
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  .container { max-width: 1100px; margin: 0 auto; padding: 20px clamp(20px,5vw,56px); }
-  header { border-bottom: 1px solid var(--grid); backdrop-filter: blur(6px); }
-  .brand b { font-size: clamp(16px, 2.2vw, 22px); letter-spacing: .3px; }
-  .brand small { color: var(--muted); }
-  .overview { display: grid; gap: 18px; }
+  body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+         background: radial-gradient(1200px 800px at 80% 30%, #111725 0%, #0c0f14 60%), var(--bg);
+         color: var(--ink); min-height: 100vh; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--grid); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .overview { padding: 22px 0 0 0; display: grid; gap: 12px; }
   .kicker { color: var(--muted); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
   h1 { margin: 0; font-size: clamp(28px, 4.4vw, 48px); line-height: 1.1; }
   .sub { color: var(--muted); max-width: 70ch; }
-  .legend { display: flex; gap: 14px; align-items: center; margin-top: 12px; }
-  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--card); border: 1px solid var(--grid); border-radius: 999px; font-size: 12px; color: var(--muted); }
+  .legend { display: flex; gap: 14px; align-items: center; margin-top: 6px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: #0f172a; border: 1px solid var(--grid); border-radius: 999px; font-size: 12px; color: var(--muted); }
   .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
   .dot.c { background: var(--accent-1); box-shadow: 0 0 20px #7ec8ff33; }
   .dot.l { background: var(--accent-2); box-shadow: 0 0 20px #a7ffcf33; }
 
-  .brain-wrap { position: relative; }
-  .brain-card {
-    position: relative;
-    background: linear-gradient(145deg, #0e1624, #0a1018);
-    border: 1px solid var(--grid);
-    border-radius: 28px;
-    box-shadow: 0 10px 30px #00000055, inset 0 1px 0 #ffffff08;
-    padding: clamp(12px, 2vw, 18px);
-    overflow: hidden;
-    min-height: 60vh;
-    margin: 24px auto;
-    width: min(1200px, 94vw);
-  }
-  .brain-title { position: absolute; top: 14px; left: 16px; font-size: 12px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
+  .wrap { position: relative; max-width: 1100px; margin: 18px auto 26px; padding: 0 24px; }
+  .card { position: relative; background: linear-gradient(145deg, #0e1624, var(--card));
+          border: 1px solid var(--grid); border-radius: 22px; min-height: 60vh; overflow: hidden;
+          box-shadow: 0 10px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06); }
+  .title { position:absolute; top:14px; left:18px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px }
 
-  /* SVG (vector only) */
-  .hemisphere { width: 100%; height: auto; display: block; }
+  /* Brain size */
+  .brain { width: min(820px, 92vw); display:block; margin: 38px auto 0;
+           filter: drop-shadow(0 10px 30px rgba(0,0,0,.35)); }
 
-  /* Photo layers OUTSIDE the SVG to avoid resampling blur */
-  .collage-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-  }
+  /* Labels */
+  .labels { position:absolute; inset:0; pointer-events:none; z-index:7; }
+  .tag { position: absolute; display: inline-flex; align-items: center; gap: 8px;
+         padding: 12px 16px; background: linear-gradient(180deg, rgba(10,16,26,.92), rgba(10,16,26,.85));
+         border: 1px solid #263447; border-radius: 999px; font-weight: 800; letter-spacing: .06em;
+         text-transform: uppercase; text-shadow: 0 1px 0 rgba(0,0,0,.6);
+         box-shadow: 0 6px 18px rgba(0,0,0,.45), 0 0 0 2px rgba(126,200,255,.10); }
+  .tag .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+  .tag.cre { color:#d6efff; } .tag.lead { color:#eafff6; }
+  .tag.cre .dot { background: var(--accent-1); box-shadow: 0 0 24px #7ec8ff77; }
+  .tag.lead .dot { background: var(--accent-2); box-shadow: 0 0 24px #a7ffcf77; }
+  .tag.cre { left: 28%; top: 30%; transform: translate(-50%, -50%); }
+  .tag.lead { left: 70%; top: 30%; transform: translate(-50%, -50%); }
 
-  /* Clip halves to approximate interior */
-  .creativity-layer, .leadership-layer { position:absolute; top:0; bottom:0; width:50%; }
-  .creativity-layer { left: 0; clip-path: polygon(3% 10%, 48% 10%, 48% 90%, 3% 90%); }
-  .leadership-layer { right: 0; clip-path: polygon(52% 10%, 97% 10%, 97% 90%, 52% 90%); }
-
-  .tiles { position: relative; width: 100%; height: 100%; }
-  .tile {
-    position: absolute;
-    width: clamp(160px, 22vw, 260px);
-    aspect-ratio: 4 / 3;
-    border-radius: 16px;
-    overflow: hidden;
-    outline: 1px solid #ffffff22;
-    box-shadow: 0 6px 18px rgba(0,0,0,.35);
-  }
-  .tile img {
-    width: 100%; height: 100%; object-fit: cover;
-    image-rendering: auto;
-    filter: none !important; mix-blend-mode: normal !important; opacity: 1 !important;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  /* Positions with whole pixels to avoid subpixel blur */
-  .c1 { left: 6%; top: 26%; transform: rotate(-2deg); }
-  .c2 { left: 10%; top: 46%; transform: rotate(3deg); }
-  .c3 { left: 18%; top: 58%; transform: rotate(-4deg); }
-  .c4 { left: 22%; top: 32%; transform: rotate(2deg); }
-  .c5 { left: 28%; top: 44%; transform: rotate(-1deg); }
-  .c6 { left: 14%; top: 18%; transform: rotate(-3deg); }
-
-  .l1 { right: 18%; top: 24%; transform: rotate(2deg); }
-  .l2 { right: 8%; top: 40%; transform: rotate(-3deg); }
-  .l3 { right: 24%; top: 56%; transform: rotate(4deg); }
-  .l4 { right: 14%; top: 66%; transform: rotate(-2deg); }
-
-  .half-link { position: absolute; top:0; bottom:0; width:50%; z-index:4; cursor:pointer; }
-  .half-link.creativity { left:0; }
-  .half-link.leadership { right:0; }
-  .half-link:focus-visible { outline: 2px solid #7ec8ff; }
-
-  footer { border-top: 1px solid var(--grid); padding: 14px clamp(20px,5vw,56px); color: var(--muted); font-size: 12px; }
-  @media (max-width: 980px) { .brain-card { min-height: 54vh; } }
+  /* Icon badges (already colorful) */
+  .icons { position:absolute; inset:0; z-index:4; pointer-events:none; }
+  .badge { position:absolute; display:flex; align-items:center; gap:10px;
+           padding:8px 12px; border-radius:999px; background:#0f172aDD; 
+           border:1px solid #203047; box-shadow:0 6px 16px rgba(0,0,0,.35);
+           backdrop-filter: blur(4px); }
+  .badge svg { width:28px; height:28px; display:block; }
+  .badge .label { font-weight:700; letter-spacing:.03em; font-size:14px; }
+  .badge.b-c1 { background: linear-gradient(180deg, #0f172a, #0b1320); box-shadow: 0 8px 20px rgba(255,183,3,.25); }
+  .badge.b-c1 svg * { stroke: #FFB703 !important; }
+  .badge.b-c2 { background: linear-gradient(180deg, #0f172a, #0b1424); box-shadow: 0 8px 20px rgba(255,99,132,.25); }
+  .badge.b-c2 svg * { stroke: #FF6384 !important; }
+  .badge.b-c3 { background: linear-gradient(180deg, #0f172a, #0a1522); box-shadow: 0 8px 20px rgba(0,199,171,.25); }
+  .badge.b-c3 svg * { stroke: #00C7AB !important; }
+  .badge.b-c4 { background: linear-gradient(180deg, #0f172a, #0e1326); box-shadow: 0 8px 20px rgba(155,89,182,.25); }
+  .badge.b-c4 svg * { stroke: #9B59B6 !important; }
+  .badge.b-l1 { background: linear-gradient(180deg, #0f172a, #0b1220); box-shadow: 0 8px 20px rgba(250,82,82,.25); }
+  .badge.b-l1 svg * { stroke: #FA5252 !important; }
+  .badge.b-l2 { background: linear-gradient(180deg, #0f172a, #081621); box-shadow: 0 8px 20px rgba(34,197,94,.25); }
+  .badge.b-l2 svg * { stroke: #22C55E !important; }
+  .badge.b-l3 { background: linear-gradient(180deg, #0f172a, #091622); box-shadow: 0 8px 20px rgba(59,130,246,.25); }
+  .badge.b-l3 svg * { stroke: #3B82F6 !important; }
+  .badge.b-l4 { background: linear-gradient(180deg, #0f172a, #101323); box-shadow: 0 8px 20px rgba(255,159,67,.25); }
+  .badge.b-l4 svg * { stroke: #FF9F43 !important; }
+  .b-c1 { left:22%; top:36%; transform:rotate(-2deg); }
+  .b-c2 { left:18%; top:52%; transform:rotate(2deg); }
+  .b-c3 { left:30%; top:46%; transform:rotate(-3deg); }
+  .b-c4 { left:26%; top:64%; transform:rotate(1deg); }
+  .b-l1 { left:60%; top:36%; transform:rotate(2deg); }
+  .b-l2 { left:72%; top:48%; transform:rotate(-2deg); }
+  .b-l3 { left:66%; top:60%; transform:rotate(3deg); }
+  .b-l4 { left:82%; top:42%; transform:rotate(-1deg); }
 </style>
 </head>
 <body>
-  <header class="container">
-    <div class="brand">
-      <b>ESP252 • Leadership/Creativity Portfolio</b>
-      <small>Bennett Geissler · Fall 2025</small>
-    </div>
-  </header>
-
-  <main>
-    <section class="container overview" aria-labelledby="hero-title">
-      <div class="kicker">Home</div>
-      <h1 id="hero-title">The Right Brain View of My Semester</h1>
-      <p class="sub">Explore two complementary tracks contained within the right hemisphere: <strong>Creativity</strong> on the left interior and <strong>Leadership</strong> on the right. Click either side to dive into the artifacts.</p>
-      <div class="legend" role="list">
-        <span class="chip" role="listitem"><span class="dot c"></span> Creativity</span>
-        <span class="chip" role="listitem"><span class="dot l"></span> Leadership</span>
-      </div>
-    </section>
-
-    <section class="container brain-wrap" aria-label="Right hemisphere with two sections">
-      <div class="brain-card">
-        <div class="brain-title">Right Hemisphere</div>
-
-        <!-- Vector hemisphere outline only -->
-        <svg class="hemisphere" viewBox="420 70 460 610" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="brainLabel">
-          <title id="brainLabel">Right Hemisphere: Creativity (left interior) and Leadership (right interior)</title>
-          <defs>
-            <linearGradient id="rim" x1="0" x2="1">
-              <stop offset="0%" stop-color="#7ec8ff" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#a7ffcf" stop-opacity="0.6"/>
-            </linearGradient>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <path d="M420 70 L420 630
-                   C420 660 450 680 500 680
-                   C650 680 780 610 840 490
-                   C870 430 880 380 880 340
-                   C880 270 860 220 820 170
-                   C780 120 720 90 650 80
-                   C610 75 570 70 520 70
-                   C480 70 450 70 420 70 Z"
-                fill="none" stroke="url(#rim)" stroke-width="3" filter="url(#glow)"/>
-          <line x1="650" y1="70" x2="650" y2="690" stroke="#ffffff22" stroke-width="2"/>
-        </svg>
-
-        <!-- Photo collages OUTSIDE the SVG (no resampling) -->
-        <div class="collage-layer creativity-layer" aria-hidden="true">
-          <div class="tiles">
-            <figure class="tile c1"><img src="./assets/swan.jpg" alt=""></figure>
-            <figure class="tile c2"><img src="./assets/puzzle.jpg" alt=""></figure>
-            <figure class="tile c3"><img src="./assets/light.jpg" alt=""></figure>
-            <figure class="tile c4"><img src="./assets/light 2.jpg" alt=""></figure>
-            <figure class="tile c5"><img src="./assets/person.jpg" alt=""></figure>
-            <figure class="tile c6"><img src="./assets/paint-brushes-color-palette_1308-126704.jpg" alt=""></figure>
-          </div>
-        </div>
-
-        <div class="collage-layer leadership-layer" aria-hidden="true">
-          <div class="tiles">
-            <figure class="tile l1"><img src="./assets/istockphoto-1308370134-612x612.jpg" alt=""></figure>
-            <figure class="tile l2"><img src="./assets/istockphoto-1305960821-612x612.jpg" alt=""></figure>
-            <figure class="tile l3"><img src="./assets/istockphoto-1439713781-612x612.jpg" alt=""></figure>
-            <figure class="tile l4"><img src="./assets/istockphoto-1818501973-612x612.jpg" alt=""></figure>
-          </div>
-        </div>
-
-        <!-- Click targets -->
-        <a class="half-link creativity" href="#creativity" aria-label="Go to Creativity"></a>
-        <a class="half-link leadership" href="#leadership" aria-label="Go to Leadership"></a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      Placeholder footer · Routing targets: <a href="#creativity">#creativity</a> and <a href="#leadership">#leadership</a>.
-    </div>
-  </footer>
+<header class="container">ESP252 • Unlocking My Right Brain</header>
+<section aria-labelledby="hero-title" class="container overview">
+<div class="kicker">Reflection</div>
+<h1 id="hero-title">Unlocking the Right Side of My Brain</h1>
+<p class="sub">Kids are wildly creative—then school, routines, and fear of being wrong can quiet that voice. This course felt like turning that volume back up: practicing curiosity, taking playful risks, and rebuilding confidence in the right hemisphere. The map below shows how Creativity and Leadership reconnected for me over the semester.</p>
+<div class="legend" role="list">
+<span class="chip" role="listitem"><span class="dot c"></span> Creativity</span>
+<span class="chip" role="listitem"><span class="dot l"></span> Leadership</span>
+</div>
+</section>
+<div class="wrap">
+<div class="card">
+<div class="title">Right Hemisphere</div>
+<!-- All backgrounds are INSIDE this SVG so they can't spill out -->
+<svg aria-labelledby="brainLabel" class="brain" role="img" viewbox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+<title id="brainLabel">Right Hemisphere with internal backgrounds, Creativity left &amp; Leadership right</title>
+<defs>
+<lineargradient id="rim" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#7ec8ff" stop-opacity="0.9"></stop>
+<stop offset="100%" stop-color="#a7ffcf" stop-opacity="0.9"></stop>
+</lineargradient>
+<radialgradient cx="40%" cy="35%" id="brainFill" r="75%">
+<stop offset="0%" stop-color="#122033"></stop>
+<stop offset="100%" stop-color="#0a1220"></stop>
+</radialgradient>
+<!-- Clip paths -->
+<clippath id="hemiClip">
+<path d="M60,40 L60,360
+                   Q65,395 115,400
+                   Q280,410 390,350
+                   Q495,295 505,210
+                   Q512,140 468,90
+                   Q430,48 365,38
+                   Q320,32 265,30
+                   Q205,30 150,32
+                   Q100,34 60,40 Z"></path>
+</clippath>
+<clippath id="leftHalf"><rect height="420" width="260" x="0" y="0"></rect></clippath>
+<clippath id="rightHalf"><rect height="420" width="260" x="260" y="0"></rect></clippath>
+</defs>
+<!-- === INTERNAL BACKGROUNDS (sit behind outline) === -->
+<g clip-path="url(#hemiClip)">
+<!-- Left half -->
+<g clip-path="url(#leftHalf)">
+<rect fill="#4B5DFF" height="420" opacity="0.26" width="520" x="0" y="0"></rect>
+<g fill="none" opacity="0.45" stroke="#FFFFFF" stroke-linecap="round" stroke-width="14">
+<path d="M60 80 q80 -30 180 20"></path>
+<path d="M60 130 q80 -10 180 30"></path>
+<path d="M60 180 q80 10 180 40"></path>
+<path d="M60 230 q80 25 180 55"></path>
+<path d="M80 280 q90 30 170 60"></path>
+</g>
+</g>
+<!-- Right half -->
+<g clip-path="url(#rightHalf)">
+<rect fill="#2ECC71" height="420" opacity="0.24" width="520" x="0" y="0"></rect>
+<g fill="none" opacity="0.45" stroke="#FFFFFF" stroke-linecap="round" stroke-width="14">
+<path d="M300 80 q80 -30 170 20"></path>
+<path d="M300 130 q80 -5 170 35"></path>
+<path d="M300 180 q80 10 170 40"></path>
+<path d="M300 230 q80 25 170 55"></path>
+<path d="M300 280 q90 30 170 60"></path>
+</g>
+</g>
+</g>
+<!-- Foreground fill + outline and divider -->
+<path d="M60,40 L60,360
+               Q65,395 115,400
+               Q280,410 390,350
+               Q495,295 505,210
+               Q512,140 468,90
+               Q430,48 365,38
+               Q320,32 265,30
+               Q205,30 150,32
+               Q100,34 60,40 Z" fill="none" stroke="url(#rim)" stroke-width="3"></path>
+<line stroke="#CFE9DB44" stroke-width="2.5" x1="260" x2="260" y1="40" y2="380"></line>
+</svg>
+<!-- ICONS -->
+<div class="icons">
+<!-- Creativity -->
+<div class="badge b-c1">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 18h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"></path>
+<path d="M12 2a7 7 0 0 0-4 13c.6.5 1 1.3 1 2h6c0-.7.4-1.5 1-2a7 7 0 0 0-4-13z"></path>
+</svg><span class="label">Idea</span>
+</div>
+<div class="badge b-c2">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 20l9-9a2.1 2.1 0 0 0-3-3l-9 9-3 1 1-3 9-9"></path>
+<path d="M16 5l3 3"></path>
+</svg><span class="label">Design</span>
+</div>
+<div class="badge b-c3">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l4 4M15 15l4 4M5 19l4-4M15 9l4-4"></path>
+</svg><span class="label">Inspiration</span>
+</div>
+<div class="badge b-c4">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 22a10 10 0 1 1 10-10c0 2-1 3-3 3h-2a2 2 0 0 0-2 2 3 3 0 0 1-3 3z"></path>
+<circle cx="7.5" cy="10.5" r="1"></circle><circle cx="10" cy="7" r="1"></circle>
+<circle cx="14" cy="7" r="1"></circle><circle cx="16.5" cy="10.5" r="1"></circle>
+</svg><span class="label">Art</span>
+</div>
+<!-- Leadership -->
+<div class="badge b-l1">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 22V6"></path><path d="M6 6l9-2v6l-9-2"></path>
+</svg><span class="label">Goals</span>
+</div>
+<div class="badge b-l2">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4"></circle>
+<path d="M22 2l-4 4"></path><path d="M15 9l7-7"></path>
+</svg><span class="label">Focus</span>
+</div>
+<div class="badge b-l3">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 12l4-2 4 2 4-2 4 2"></path>
+<path d="M6 18h6a4 4 0 0 0 4-4"></path>
+</svg><span class="label">Support</span>
+</div>
+<div class="badge b-l4">
+<svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="7" width="3" x="3" y="14"></rect>
+<rect height="9" width="3" x="8" y="12"></rect>
+<rect height="11" width="3" x="13" y="10"></rect>
+<path d="M16 6l4-1v6l-4-1z"></path>
+</svg><span class="label">Growth</span>
+</div>
+</div>
+<!-- Section labels -->
+<div class="labels">
+<div class="tag cre"><span class="dot"></span> Creativity</div>
+<div class="tag lead"><span class="dot"></span> Leadership</div>
+</div>
+</div>
+</div>
+<footer class="container">Bennett Geissler · Fall 2025</footer>
 </body>
 </html>
